@@ -26,10 +26,10 @@ module "eks_admins_iam_role" {
   create_role       = true
   role_requires_mfa = false
 
-  custom_role_policy_arns = [module.allow_eks_access_iam_policy.arn]
+  custom_role_policy_arns = [module.allow_eks_access_iam_policy.arn, "arn:aws:iam::aws:policy/AmazonEKSClusterPolicy"]
 
   trusted_role_arns = [
-    "arn:aws:iam::${module.vpc.vpc_owner_id}:root"
+    "arn:aws:iam::${module.vpc.vpc_owner_id}:root",
   ]
 }
 

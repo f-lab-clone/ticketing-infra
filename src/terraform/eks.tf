@@ -49,25 +49,14 @@ module "eks" {
   }
 }
 
-resource "aws_eks_cluster" "default" {
-  name = "main-cluster"
-  
-  role_arn = module.eks_admins_iam_role.iam_role_arn
-  
-  vpc_config {
-    subnet_ids = concat(module.vpc.public_subnets, module.vpc.private_subnets)
-  }
-
-
-}
 
 provider "kubernetes" {
-  host                   = aws_eks_cluster.default.endpoint
-  cluster_ca_certificate = base64decode(aws_eks_cluster.default.certificate_authority[0].data)
+  host                   = module.eks.cluster_endpoint
+  cluster_ca_certificate = base64decode(module.eks.cluster_certificate_authority_data)
 
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", aws_eks_cluster.default.id]
+    args        = ["eks", "get-token", "--cluster-name", module.eks.cluster_name]
     command     = "aws"
   }
 }

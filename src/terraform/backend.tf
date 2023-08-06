@@ -1,27 +1,19 @@
 # Set the Terraform version
 terraform {
-  backend "s3" {
-    bucket = "tfstate-bucket-ticketing-infra"
-    key = "global/s3/terraform.tfstate"
-    region = "ap-northeast-2"
-    dynamodb_table = "terraform-state-locking"
-    encrypt = true
-  }
-  # backend "local" {}
+  # backend "s3" {
+  #   bucket = "tfstate-bucket-ticketing-infra"
+  #   key = "global/s3/terraform.tfstate"
+  #   region = "ap-northeast-2"
+  #   dynamodb_table = "terraform-state-locking"
+  #   encrypt = true
+  # }
+    backend "local" {}
 
-  required_providers {
-    kubectl = {
-      source  = "gavinbunney/kubectl"
-      version = ">= 1.14.0"
-    }
-    helm = {
-      source  = "hashicorp/helm"
-      version = ">= 2.6.0"
-    }
+    required_providers {
     aws = {
       source = "hashicorp/aws"
-      version = "= 4.67.0"
-      }
+      version = ">= 4.67.0"
+    }
   }
 
   required_version = "~> 1.0"
