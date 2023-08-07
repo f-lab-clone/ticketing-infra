@@ -1,13 +1,13 @@
 # Set the Terraform version
 terraform {
-  # backend "s3" {
-  #   bucket = "tfstate-bucket-ticketing-infra"
-  #   key = "global/s3/terraform.tfstate"
-  #   region = "ap-northeast-2"
-  #   dynamodb_table = "terraform-state-locking"
-  #   encrypt = true
-  # }
-    backend "local" {}
+  backend "s3" {
+    bucket = "tfstate-bucket-ticketing-infra"
+    key = "global/s3/terraform.tfstate"
+    region = "ap-northeast-2"
+    dynamodb_table = "terraform-state-locking"
+    encrypt = true
+  }
+    # backend "local" {}
 
     required_providers {
     aws = {
