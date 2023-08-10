@@ -44,7 +44,7 @@ module "eks" {
     },
   ]
 
-  kms_key_owners = ["arn:aws:iam::213060417361:user/ticketing-hihahayoung", "arn:aws:iam::213060417361:user/ticketing-junha", "arn:aws:iam::213060417361:user/jpark"]
+  kms_key_owners = local.ticketing_infra_team
 
   tags = {
     Environment = "development"
