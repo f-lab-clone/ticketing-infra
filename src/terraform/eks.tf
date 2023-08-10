@@ -1,7 +1,7 @@
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
 
-  cluster_name    = "ticketing-cluster-main"
+  cluster_name    = "ticketing-main-cluster"
   cluster_version = "1.27"
 
   cluster_endpoint_private_access = false
