@@ -7,9 +7,9 @@ terraform {
     dynamodb_table = "terraform-state-locking"
     encrypt = true
   }
-    # backend "local" {}
+  # backend "local" {}
 
-    required_providers {
+  required_providers {
     aws = {
       source = "hashicorp/aws"
       version = ">= 4.67.0"

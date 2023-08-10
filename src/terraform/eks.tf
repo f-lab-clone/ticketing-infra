@@ -1,7 +1,32 @@
+locals {
+  eks_auth_roles = [
+    {
+      rolearn  = module.eks_admins_iam_role.iam_role_arn
+      username = module.eks_admins_iam_role.iam_role_name
+      groups   = ["system:masters"]
+    },
+  ]
+
+  ticketing_infra_auth_roles = [
+    for team_member in local.ticketing_infra_team :
+    {
+      rolearn  = team_member.arn
+      username = team_member.name
+      groups   = ["system:masters"]
+    }
+  ]
+
+  ticketing_infra_team_arns = [
+    for team_member in local.ticketing_infra_team : team_member.arn
+  ]
+
+  all_eks_auth_roles = concat(local.eks_auth_roles, local.ticketing_infra_auth_roles)
+}
+
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
 
-  cluster_name    = "ticketing-cluster-main"
+  cluster_name    = "ticketing-main-cluster"
   cluster_version = "1.27"
 
   cluster_endpoint_private_access = false
@@ -36,13 +61,9 @@ module "eks" {
 
   manage_aws_auth_configmap = true
 
-  aws_auth_roles = [
-    {
-      rolearn  = module.eks_admins_iam_role.iam_role_arn
-      username = module.eks_admins_iam_role.iam_role_name
-      groups   = ["system:masters"]
-    },
-  ]
+  aws_auth_roles = local.all_eks_auth_roles
+
+  kms_key_owners = local.ticketing_infra_team_arns
 
   tags = {
     Environment = "development"
