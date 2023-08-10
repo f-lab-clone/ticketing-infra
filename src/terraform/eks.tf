@@ -8,12 +8,16 @@ locals {
   ]
 
   ticketing_infra_auth_roles = [
-    for i, arn in local.ticketing_infra_team_arns :
+    for team_member in local.ticketing_infra_team :
     {
-      rolearn  = arn
-      username = local.ticketing_infra_team_names[i]
+      rolearn  = team_member.arn
+      username = team_member.name
       groups   = ["system:masters"]
     }
+  ]
+
+  ticketing_infra_team_arns = [
+    for team_member in local.ticketing_infra_team : team_member.arn
   ]
 
   all_eks_auth_roles = concat(local.eks_auth_roles, local.ticketing_infra_auth_roles)
