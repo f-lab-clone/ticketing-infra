@@ -18,7 +18,6 @@ module "allow_eks_access_iam_policy" {
   })
 }
 
-
 module "eks_admins_iam_role" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-assumable-role"
 
@@ -53,12 +52,42 @@ module "allow_assume_eks_admins_iam_policy" {
   })
 }
 
-  module "eks_admins_iam_group" {
+module "eks_admins_iam_group" {
   source  = "terraform-aws-modules/iam/aws//modules/iam-group-with-policies"
 
   name                              = "eks-admin"
   attach_iam_self_management_policy = false
   create_group                      = true
   group_users                       = [module.eks_iam_user1.iam_user_name, module.eks_iam_user2.iam_user_name, module.eks_iam_user3.iam_user_name]
-  custom_group_policy_arns          = [module.allow_assume_eks_admins_iam_policy.arn]
+  custom_group_policy_arns          = [module.allow_eks_access_iam_policy.arn]
+}
+
+module "eks_iam_user1" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+
+  name                          = "junha_ahn"
+  create_iam_access_key         = false
+  create_iam_user_login_profile = false
+
+  force_destroy = true
+}
+
+module "eks_iam_user2" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+
+  name                          = "hihahayoung"
+  create_iam_access_key         = false
+  create_iam_user_login_profile = false
+
+  force_destroy = true
+}
+
+module "eks_iam_user3" {
+  source  = "terraform-aws-modules/iam/aws//modules/iam-user"
+
+  name                          = "littlejsp"
+  create_iam_access_key         = false
+  create_iam_user_login_profile = false
+
+  force_destroy = true
 }

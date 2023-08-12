@@ -1,4 +1,3 @@
-# Set the Terraform version
 terraform {
   backend "s3" {
     bucket = "tfstate-bucket-ticketing-infra"
@@ -23,6 +22,8 @@ resource "aws_kms_key" "mykey" {
   description             = "This key is used to encrypt bucket objects"
   deletion_window_in_days = 10
 }
+
+
 
 resource "aws_s3_bucket" "tfstate"{
  bucket = "tfstate-bucket-ticketing-infra"
