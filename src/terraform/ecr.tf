@@ -1,7 +1,7 @@
 module "ecr" {
   source = "terraform-aws-modules/ecr/aws"
 
-  repository_name = "ticketing-ecr"
+  repository_name = "ticketing-backend-ecr"
 
   repository_lifecycle_policy = jsonencode({
     rules = [
