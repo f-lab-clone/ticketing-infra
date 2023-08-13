@@ -3,6 +3,9 @@ module "ecr" {
 
   repository_name = "ticketing-backend-ecr"
 
+  repository_image_tag_mutability = "MUTABLE"
+  repository_force_delete = true
+
   repository_lifecycle_policy = jsonencode({
     rules = [
       {
