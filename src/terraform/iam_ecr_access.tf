@@ -9,6 +9,7 @@ module "allow_ecr_push_iam_policy" {
     Statement = [
       {
         Action = [
+          "ecr:GetAuthorizationToken",
           "ecr:BatchGetImage",
           "ecr:BatchCheckLayerAvailability",
           "ecr:CompleteLayerUpload",
