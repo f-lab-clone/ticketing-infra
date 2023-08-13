@@ -10,7 +10,7 @@ module "db" {
   instance_class       = "db.t3.micro"
 
   db_name  = "ticketingdb"
-  username = "ticketing_db"
+  username = "root"
   port     = 3306
 
   allocated_storage     = 5
@@ -18,9 +18,10 @@ module "db" {
 
   iam_database_authentication_enabled = true
 
+  create_db_subnet_group = true
   subnet_ids = module.vpc.private_subnets
+
   vpc_security_group_ids = [module.db_security_group.security_group_id]
-  create_db_subnet_group = false
   
   skip_final_snapshot = true
   deletion_protection = false
