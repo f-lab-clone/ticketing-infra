@@ -7,22 +7,21 @@ module "db" {
   engine_version       = "8.0"
   family               = "mysql8.0" # DB parameter group
   major_engine_version = "8.0"      # DB option group
-  instance_class       = "db.t2.micro"
+  instance_class       = "db.t3.micro"
 
   db_name  = "ticketingdb"
   username = "ticketing_db"
   port     = 3306
 
-  allocated_storage     = 2
+  allocated_storage     = 5
   max_allocated_storage = 10
 
   iam_database_authentication_enabled = true
 
-  # multi_az               = true
-  # db_subnet_group_name   = aws_db_subnet_group.private.name
-  subnet_ids = [module.vpc.private_subnets[0]]
+  subnet_ids = module.vpc.private_subnets
   vpc_security_group_ids = [module.db_security_group.security_group_id]
-
+  create_db_subnet_group = false
+  
   skip_final_snapshot = true
   deletion_protection = false
 
@@ -38,10 +37,12 @@ module "db" {
     {
       name  = "collation_server"
       value = "utf8mb4_unicode_ci"
+      apply_method = "pending-reboot"
     },
     {
       name  = "skip-character-set-client-handshake"
       value = "1"
+      apply_method = "pending-reboot"
     }
   ]
 }
