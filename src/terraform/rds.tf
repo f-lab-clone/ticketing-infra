@@ -34,6 +34,14 @@ module "db" {
     {
       name  = "character_set_server"
       value = "utf8mb4"
+    },
+    {
+      name  = "collation_server"
+      value = "utf8mb4_unicode_ci"
+    },
+    {
+      name  = "skip-character-set-client-handshake"
+      value = "1"
     }
   ]
 }
