@@ -12,6 +12,7 @@ module "db" {
   db_name  = "ticketingdb"
   username = "root"
   port     = 3306
+  manage_master_user_password = true
 
   allocated_storage     = 5
   max_allocated_storage = 10
@@ -64,6 +65,6 @@ module "db_security_group" {
       protocol    = "tcp"
       description = "MySQL access from within VPC"
       cidr_blocks = module.vpc.vpc_cidr_block
-    },
+    }
   ]
 }
