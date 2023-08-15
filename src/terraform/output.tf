@@ -15,7 +15,7 @@ output "cluster_name" {
 # }
 
 
-# output "bastion_public_ip" {
-#   description = "Public IP address of the bastion host"
-#   value       = module.bastion.public_ip
-# }
+output "bastion_public_ip" {
+  description = "Public IP address of the bastion host"
+  value       = module.bastion.public_ip
+}
