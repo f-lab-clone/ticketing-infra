@@ -1,7 +1,7 @@
 module "bastion" {
   source  = "terraform-aws-modules/ec2-instance/aws"
 
-  ami = "ami-0c9c942bd7bf113a2"  # TODO: 변수화 varaibles.tf
+  ami = local.ubuntu_22_ami
   name = "bastion"
   key_name = module.key_pair.key_pair_name
   associate_public_ip_address = true
