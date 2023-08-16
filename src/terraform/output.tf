@@ -13,3 +13,9 @@ output "cluster_name" {
 # output "aws_auth_configmap_yaml" {
 #   value = module.eks.aws_auth_configmap_yaml
 # }
+
+
+output "bastion_public_ip" {
+  description = "Public IP address of the bastion host"
+  value       = module.bastion.public_ip
+}
