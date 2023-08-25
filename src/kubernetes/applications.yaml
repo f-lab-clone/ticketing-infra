@@ -15,13 +15,11 @@ spec:
   
   destination:
     server: https://kubernetes.default.svc
-    # The namespace will only be set for namespace-scoped resources that have not set a value for .metadata.namespace
     namespace: default
   
   syncPolicy:
     automated: 
       prune: true 
       selfHeal: true   
-    # Namespace Auto-Creation ensures that namespace specified as the application destination exists in the destination cluster.  
     syncOptions:
       - CreateNamespace=true
