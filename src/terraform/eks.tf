@@ -27,7 +27,7 @@ module "eks" {
         role = "backend"
       }
 
-      instance_types = ["t2.small", "t2.small"]
+      instance_types = ["t2.small"]
       capacity_type  = "SPOT"
 
       subnet_ids = module.vpc.public_subnets
