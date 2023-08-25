@@ -19,15 +19,15 @@ module "eks" {
 
   eks_managed_node_groups = {
     backend = {
-      desired_size = 1
+      desired_size = 2
       min_size     = 1
-      max_size     = 1
+      max_size     = 3
 
       labels = {
         role = "backend"
       }
 
-      instance_types = ["t2.small"]
+      instance_types = ["t2.small", "t2.small"]
       capacity_type  = "SPOT"
 
       subnet_ids = module.vpc.public_subnets
