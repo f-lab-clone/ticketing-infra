@@ -3,3 +3,8 @@ resource "kubernetes_namespace" "argo-ns" {
     name = "argocd"
   }
 }
+resource "kubernetes_namespace" "monitoring-ns" {
+  metadata {
+    name = "monitoring"
+  }
+}
