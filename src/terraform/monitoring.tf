@@ -5,9 +5,21 @@ resource "helm_release" "kube-prometheus" {
   repository = "https://prometheus-community.github.io/helm-charts"
 
   values = [
-    "${file("${path.module}/../grafana/custom_values.yaml")}"
+    "${file("${path.module}/../grafana/kube_prometheus_custom_values.yaml")}"
   ]
 }
+
+resource "helm_release" "mysql-exporter" {
+  chart      = "prometheus-mysql-exporter"
+  name       = "mysql-exporter"
+  namespace  = "monitoring"
+  repository = "https://prometheus-community.github.io/helm-charts"
+
+  values = [
+    "${file("${path.module}/../grafana/mysql_exporter_custom_values.yaml")}"
+  ]
+}
+
 
 resource "kubernetes_config_map" "grafana-dashboards-custom" {
   metadata {

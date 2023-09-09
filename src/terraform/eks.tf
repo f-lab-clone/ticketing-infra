@@ -19,9 +19,9 @@ module "eks" {
 
   eks_managed_node_groups = {
     backend = {
-      desired_size = 3
-      min_size     = 2
-      max_size     = 4
+      desired_size = 5
+      min_size     = 4
+      max_size     = 6
 
       labels = {
         role = "backend"
