@@ -2,6 +2,7 @@ mysql:
   db: "ticketingdb"
   host: "ticketingdb.c0rf7nfpwcj4.ap-northeast-2.rds.amazonaws.com"
   # config my.cnf https://dev.mysql.com/doc/c-api/8.0/en/mysql-options.html
-  pass: "m[?ntOsHLZqd9HqiT6(6mg?(MeY}"
+  pass: "pw1234"
   port: 3306
-  user: "root"
+  protocol: "TCP"
+  user: "exporter"

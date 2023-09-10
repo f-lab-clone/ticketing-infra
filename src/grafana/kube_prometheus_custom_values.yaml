@@ -17,7 +17,7 @@ prometheus:
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"
         static_configs:
-          - targets: ["172.20.253.244:9104"]
+          - targets: ["172.20.75.91:9104"]
 
 
   # additionalDataSources:
