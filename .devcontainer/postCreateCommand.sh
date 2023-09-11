@@ -43,3 +43,6 @@ chmod 700 get_helm.sh
 ./get_helm.sh
 sudo chmod +x /usr/local/bin/helm
 rm ./get_helm.sh
+
+
+sudo apt install mysql-server -y
