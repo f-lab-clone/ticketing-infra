@@ -1,7 +1,7 @@
 module "secrets_manager" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
-  name_prefix             = "development/ticketing-backend"
+  name = "development/ticketing-backend"
 
 
   ignore_secret_changes = true
