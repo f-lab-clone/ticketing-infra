@@ -1,0 +1,35 @@
+grafana:
+  sidecar:
+    dashboards:
+      enabled: true
+      label: grafana_dashboard
+      folder: /tmp/dashboards
+      provider: 
+        allowUiUpdates: true
+        foldersFromFilesStructure: true
+
+      ## Annotations for Grafana dashboard configmaps
+      annotations: 
+        k8s-sidecar-target-directory: "/tmp/dashboards/kubernetes"
+
+prometheus:
+  prometheusSpec:
+    additionalScrapeConfigs:
+      - job_name: "mysql-exporter"
+        static_configs:
+          - targets: ["mysql-exporter-prometheus-mysql-exporter:9104"]
+
+
+  # additionalDataSources:
+  #   - name: MySQL
+  #     type: mysql
+  #     url: ticketingdb.c0rf7nfpwcj4.ap-northeast-2.rds.amazonaws.com:3306
+  #     user: "root"
+  #     jsonData:
+  #       database: grafana
+  #       maxOpenConns: 100 # Grafana v5.4+
+  #       maxIdleConns: 100 # Grafana v5.4+
+  #       maxIdleConnsAuto: true # Grafana v9.5.1+
+  #       connMaxLifetime: 14400 # Grafana v5.4+
+  #     secureJsonData:
+  #       password: "m[?ntOsHLZqd9HqiT6(6mg?(MeY}"
