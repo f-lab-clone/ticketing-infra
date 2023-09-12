@@ -24,15 +24,14 @@ module "secrets_manager" {
 
   ignore_secret_changes = true
   secret_string = jsonencode({
-    MYSQL_PASSWORD   = ""
-#    PORT: ""
-#    MYSQL_HOST: ""
-#    MYSQL_PORT: ""
-#    MYSQL_USERNAME: ""
-#    MYSQL_SCHEMA: ""
-#    JWT_SECRET: ""
-#    JWT_EXPIRATION_HOURS: ""
-#    JWT_ISSUER: ""
+    MYSQL_PASSWORD = ""
+    MYSQL_USERNAME = ""
+    MYSQL_HOST = ""
+    MYSQL_PORT = ""
+    MYSQL_SCHEMA = ""
+    JWT_SECRET = ""
+    JWT_EXPIRATION_HOURS = ""
+    JWT_ISSUER = ""
   })
 }
 
