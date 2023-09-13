@@ -17,3 +17,8 @@ prometheus:
       - job_name: "mysql-exporter"
         static_configs:
           - targets: ["mysql-exporter-prometheus-mysql-exporter:9104"]
+
+      - job_name: "spring-actuator"
+        static_configs:
+          - targets: ["prod-ticketing-application.default:8080"]
+        metrics_path: "/actuator/prometheus"
