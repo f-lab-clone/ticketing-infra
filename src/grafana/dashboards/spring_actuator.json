@@ -4190,8 +4190,8 @@
       {
         "current": {
           "selected": false,
-          "text": "prod-ticketing-application.default:8080",
-          "value": "prod-ticketing-application.default:8080"
+          "text": "development-ticketing-application.default:8080",
+          "value": "development-ticketing-application.default:8080"
         },
         "datasource": {
           "type": "prometheus",
