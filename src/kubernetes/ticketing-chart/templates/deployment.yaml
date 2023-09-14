@@ -1,0 +1,93 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "ticketing-chart.fullname" . }}
+  labels:
+    {{- include "ticketing-chart.labels" . | nindent 4 }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      serviceAccountName: {{ .Values.backend.serviceAccountName }}
+
+      volumes:
+      - name: secrets-store-inline
+        csi:
+          driver: secrets-store.csi.k8s.io
+          readOnly: true
+          volumeAttributes:
+            secretProviderClass: "backend-secret-provider"
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+          
+          imagePullPolicy: Always
+
+          ports:
+            - name: http
+              containerPort: {{ .Values.backend.port }}
+              protocol: TCP
+
+          env:
+            - name: PORT
+              value: "{{ .Values.backend.port }}"
+            - name: MYSQL_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: MYSQL_USERNAME
+            - name: MYSQL_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: MYSQL_PASSWORD
+            - name: MYSQL_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: MYSQL_HOST
+            - name: MYSQL_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: MYSQL_PORT
+            - name: MYSQL_SCHEMA
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: MYSQL_SCHEMA
+            - name: JWT_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: JWT_SECRET
+            - name: JWT_ISSUER
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: JWT_ISSUER
+            - name: JWT_EXPIRATION_HOURS
+              valueFrom:
+                secretKeyRef:
+                  name: ticketing-secret
+                  key: JWT_EXPIRATION_HOURS
+
+          volumeMounts: 
+          - name: secrets-store-inline
+            mountPath: "/mnt/secrets-store"
+            readOnly: true
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
