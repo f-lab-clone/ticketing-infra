@@ -21,7 +21,7 @@ spec:
           driver: secrets-store.csi.k8s.io
           readOnly: true
           volumeAttributes:
-            secretProviderClass: "backend-secret-provider"
+            secretProviderClass: {{ include "ticketing-chart.fullname" . }}
 
       containers:
         - name: {{ .Chart.Name }}
