@@ -63,6 +63,18 @@ module "eks" {
     module.infra_team_user3.iam_user_arn
   ]
 
+
+  node_security_group_additional_rules = {
+    ingress_http = {
+      description = "open http access"
+      protocol    = "-1"
+      from_port   = 80
+      to_port     = 80
+      type        = "ingress"
+      cidr_blocks      = ["0.0.0.0/0"]
+    }
+  }
+
   tags = {
     Environment = "development"
   }
