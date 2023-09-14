@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: prod
+  name: development
   namespace: argocd
   finalizers:
     - resources-finalizer.argocd.argoproj.io
@@ -9,9 +9,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/f-lab-clone/helm-repository.git
+    repoURL: https://github.com/f-lab-clone/ticketing-infra.git
     targetRevision: HEAD
-    path: incubator/ticketing-chart
+    path: src/kubernetes/ticketing-chart
   
   destination:
     server: https://kubernetes.default.svc

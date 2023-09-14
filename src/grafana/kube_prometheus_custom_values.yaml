@@ -20,5 +20,5 @@ prometheus:
 
       - job_name: "spring-actuator"
         static_configs:
-          - targets: ["prod-ticketing-application.default:8080"]
+          - targets: ["development-ticketing-application.default:8080"]
         metrics_path: "/actuator/prometheus"
