@@ -4,6 +4,7 @@ metadata:
   name: {{ include "ticketing-chart.fullname" . }}
   labels:
     {{- include "ticketing-chart.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:

@@ -18,10 +18,24 @@ module "eks" {
   }
 
   eks_managed_node_groups = {
+    ingress = {
+      desired_size = 1
+      min_size     = 1
+      max_size     = 1
+
+      labels = {
+        role = "ingress"
+      }
+
+      instance_types = ["t2.small"]
+      capacity_type  = "SPOT"
+
+      subnet_ids = module.vpc.public_subnets
+    }
     backend = {
-      desired_size = 4
-      min_size     = 4
-      max_size     = 5
+      desired_size = 3
+      min_size     = 3
+      max_size     = 3
 
       labels = {
         role = "backend"
@@ -33,7 +47,6 @@ module "eks" {
       subnet_ids = module.vpc.public_subnets
     }
   }
-
   manage_aws_auth_configmap = true
 
   aws_auth_roles = concat([
