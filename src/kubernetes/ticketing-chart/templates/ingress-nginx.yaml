@@ -428,6 +428,7 @@ spec:
       hostNetwork: true
       nodeSelector: 
         kubernetes.io/os: linux
+        role: ingress
       serviceAccountName: ingress-nginx
       terminationGracePeriodSeconds: 300
       volumes:
