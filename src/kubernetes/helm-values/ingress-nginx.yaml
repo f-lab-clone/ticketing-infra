@@ -870,7 +870,7 @@ defaultBackend:
   labels: {}
 ## Enable RBAC as per https://github.com/kubernetes/ingress-nginx/blob/main/docs/deploy/rbac.md and https://github.com/kubernetes/ingress-nginx/issues/266
 rbac:
-  create: false
+  create: true
   scope: false
 ## If true, create & use Pod Security Policy resources
 ## https://kubernetes.io/docs/concepts/policy/pod-security-policy/
