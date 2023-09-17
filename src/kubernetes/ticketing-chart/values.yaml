@@ -11,4 +11,4 @@ backend:
 
   autoscaling:
     enabled: true
-    replicaCount: 1
+    replicaCount: 3
