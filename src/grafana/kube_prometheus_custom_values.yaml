@@ -13,6 +13,17 @@ grafana:
 
 prometheus:
   prometheusSpec:
+
+    storageSpec:
+    # Using PersistentVolumeClaim
+     volumeClaimTemplate:
+       spec:
+         storageClassName: storage
+         accessModes: ["ReadWriteMany"]
+         resources:
+           requests:
+             storage: 1Gi
+
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"
         static_configs:
