@@ -82,7 +82,7 @@ controller:
   ## Disabled by default
   hostPort:
     # -- Enable 'hostPort' or not
-    enabled: false
+    enabled: true
     ports:
       # -- 'hostPort' http port
       http: 80
@@ -472,7 +472,7 @@ controller:
     ##     8080: 32808
     nodePorts:
       http: ""
-      https: ""
+      # https: ""
       tcp: {}
       udp: {}
     external:
