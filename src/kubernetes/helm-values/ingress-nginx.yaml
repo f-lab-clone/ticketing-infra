@@ -763,9 +763,9 @@ defaultBackend:
   existingPsp: ""
   extraArgs: {}
   serviceAccount:
-    create: false
+    create: true
     name: ""
-    automountServiceAccountToken: false
+    automountServiceAccountToken: true
   # -- Additional environment variables to set for defaultBackend pods
   extraEnvs: []
   port: 8080
@@ -877,9 +877,9 @@ rbac:
 podSecurityPolicy:
   enabled: false
 serviceAccount:
-  create: false
+  create: true
   name: ""
-  automountServiceAccountToken: false
+  automountServiceAccountToken: true
   # -- Annotations for the controller service account
   annotations: {}
 # -- Optional array of imagePullSecrets containing private registry credentials
