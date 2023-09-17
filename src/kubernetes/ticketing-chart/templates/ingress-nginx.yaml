@@ -6,12 +6,12 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
   namespace: default
 automountServiceAccountToken: true
 ---
@@ -22,12 +22,12 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx-controller
+  name: development-ingress-nginx-controller
   namespace: default
 data:
   allow-snippet-annotations: "true"
@@ -39,11 +39,11 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
 rules:
   - apiGroups:
       - ""
@@ -123,18 +123,18 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
 subjects:
   - kind: ServiceAccount
-    name: release-name-ingress-nginx
+    name: development-ingress-nginx
     namespace: "default"
 ---
 # Source: ingress-nginx/templates/controller-role.yaml
@@ -144,12 +144,12 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
   namespace: default
 rules:
   - apiGroups:
@@ -204,7 +204,7 @@ rules:
     resources:
       - leases
     resourceNames:
-      - release-name-ingress-nginx-leader
+      - development-ingress-nginx-leader
     verbs:
       - get
       - update
@@ -237,20 +237,20 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
   namespace: default
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: release-name-ingress-nginx
+  name: development-ingress-nginx
 subjects:
   - kind: ServiceAccount
-    name: release-name-ingress-nginx
+    name: development-ingress-nginx
     namespace: "default"
 ---
 # Source: ingress-nginx/templates/controller-service.yaml
@@ -261,12 +261,12 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx-controller
+  name: development-ingress-nginx-controller
   namespace: default
 spec:
   type: LoadBalancer
@@ -281,7 +281,7 @@ spec:
       appProtocol: http
   selector:
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/component: controller
 ---
 # Source: ingress-nginx/templates/controller-deployment.yaml
@@ -291,18 +291,18 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
     app.kubernetes.io/component: controller
-  name: release-name-ingress-nginx-controller
+  name: development-ingress-nginx-controller
   namespace: default
 spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: ingress-nginx
-      app.kubernetes.io/instance: release-name
+      app.kubernetes.io/instance: development
       app.kubernetes.io/component: controller
   replicas: 1
   revisionHistoryLimit: 10
@@ -312,7 +312,7 @@ spec:
       labels:
         helm.sh/chart: ingress-nginx-4.7.2
         app.kubernetes.io/name: ingress-nginx
-        app.kubernetes.io/instance: release-name
+        app.kubernetes.io/instance: development
         app.kubernetes.io/version: "1.8.2"
         app.kubernetes.io/part-of: ingress-nginx
         app.kubernetes.io/managed-by: Helm
@@ -330,10 +330,10 @@ spec:
                 - /wait-shutdown
           args:
             - /nginx-ingress-controller
-            - --election-id=release-name-ingress-nginx-leader
+            - --election-id=development-ingress-nginx-leader
             - --controller-class=k8s.io/ingress-nginx
             - --ingress-class=nginx
-            - --configmap=$(POD_NAMESPACE)/release-name-ingress-nginx-controller
+            - --configmap=$(POD_NAMESPACE)/development-ingress-nginx-controller
           securityContext: 
             capabilities:
               drop:
@@ -390,7 +390,7 @@ spec:
       nodeSelector: 
         kubernetes.io/os: linux
         role: ingress
-      serviceAccountName: release-name-ingress-nginx
+      serviceAccountName: development-ingress-nginx
       terminationGracePeriodSeconds: 300
 ---
 # Source: ingress-nginx/templates/controller-ingressclass.yaml
@@ -402,7 +402,7 @@ metadata:
   labels:
     helm.sh/chart: ingress-nginx-4.7.2
     app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/instance: development
     app.kubernetes.io/version: "1.8.2"
     app.kubernetes.io/part-of: ingress-nginx
     app.kubernetes.io/managed-by: Helm
