@@ -262,8 +262,8 @@ controller:
   # -- Node labels for controller pod assignment
   ## Ref: https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/
   ##
-  # nodeSelector:
-  #   role: ingress
+  nodeSelector:
+    role: ingress
   ## Liveness and readiness probe values
   ## Ref: https://kubernetes.io/docs/concepts/workloads/pods/pod-lifecycle/#container-probes
   ##
