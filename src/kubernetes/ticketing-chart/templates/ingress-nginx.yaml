@@ -168,7 +168,6 @@ spec:
       hostNetwork: true
       nodeSelector: 
         kubernetes.io/os: linux
-        role: ingress
       serviceAccountName: release-name-ingress-nginx
       terminationGracePeriodSeconds: 300
 ---
