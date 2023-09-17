@@ -19,7 +19,7 @@ resource "helm_release" "secrets-store-csi-driver-provider-aws" {
 module "secrets_manager" {
   source = "terraform-aws-modules/secrets-manager/aws"
 
-  name = "ye/ticketing-backend-secret"
+  name = "development/ticketing-secret"
 
 
   ignore_secret_changes = true
