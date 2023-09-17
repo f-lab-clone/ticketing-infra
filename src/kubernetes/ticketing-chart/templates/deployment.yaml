@@ -16,6 +16,9 @@ spec:
     spec:
       serviceAccountName: {{ .Values.backend.serviceAccountName }}
 
+      nodeSelector:
+        role: backend
+
       volumes:
       - name: secrets-store-inline
         csi:
