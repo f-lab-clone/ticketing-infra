@@ -1,19 +1,19 @@
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: {{ include "ticketing-chart.fullname" . }}
-#   namespace: "ingress-nginx"
-#   annotations:
-#     nginx.ingress.kubernetes.io/rewrite-target: /
-# spec:
-#   rules:
-#   - http:
-#       paths:
-#       - path: /
-#         pathType: Prefix
-#         backend:
-#           service:
-#             name: {{ include "ticketing-chart.fullname" . }}
-#             port:
-#               number: {{ .Values.backend.port }}
-#   ingressClassName: nginx
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: {{ include "ticketing-chart.fullname" . }}
+  namespace: "ingress-nginx"
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}
+            port:
+              number: {{ .Values.backend.port }}
+  ingressClassName: nginx
