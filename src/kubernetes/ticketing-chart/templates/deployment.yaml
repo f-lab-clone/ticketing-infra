@@ -6,6 +6,9 @@ metadata:
     {{- include "ticketing-chart.labels" . | nindent 4 }}
   namespace: {{ .Values.namespace }}
 spec:
+  {{- if not .Values.backend.autoscaling.enabled }}
+  replicas: {{ .Values.backend.autoscaling.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}

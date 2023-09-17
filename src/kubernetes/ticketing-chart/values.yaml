@@ -8,3 +8,7 @@ backend:
     tag: "latest"
 
   port: 8080
+
+  autoscaling:
+    enabled: true
+    replicaCount: 1
