@@ -4,7 +4,11 @@ metadata:
   name: {{ include "ticketing-chart.fullname" . }}
   labels:
     {{- include "ticketing-chart.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
 spec:
+  {{- if .Values.backend.autoscaling.enabled }}
+  replicas: {{ .Values.backend.autoscaling.replicaCount }}
+  {{- end }}
   selector:
     matchLabels:
       {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
@@ -14,6 +18,9 @@ spec:
         {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
     spec:
       serviceAccountName: {{ .Values.backend.serviceAccountName }}
+
+      nodeSelector:
+        role: backend
 
       volumes:
       - name: secrets-store-inline
