@@ -38,7 +38,7 @@ controller:
   # -- Configures the ports that the nginx-controller listens on
   containerPort:
     http: 80
-    https: 443
+    # https: 443
   # -- Will add custom configuration options to Nginx https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/configmap/
   config: {}
   # -- Annotations to be added to the controller config configuration configmap.
@@ -87,7 +87,7 @@ controller:
       # -- 'hostPort' http port
       http: 80
       # -- 'hostPort' https port
-      https: 443
+      # https: 443
   # -- Election ID to use for status update, by default it uses the controller name combined with a suffix of 'leader'
   electionID: ""
   ## This section refers to the creation of the IngressClass resource
@@ -433,7 +433,7 @@ controller:
     # -- Used by cloud providers to select a load balancer implementation other than the cloud provider default. https://kubernetes.io/docs/concepts/services-networking/service/#load-balancer-class
     loadBalancerClass: ""
     enableHttp: true
-    enableHttps: true
+    enableHttps: false
     ## Set external traffic policy to: "Local" to preserve source IP on providers supporting it.
     ## Ref: https://kubernetes.io/docs/tutorials/services/source-ip/#source-ip-for-services-with-typeloadbalancer
     # externalTrafficPolicy: ""
