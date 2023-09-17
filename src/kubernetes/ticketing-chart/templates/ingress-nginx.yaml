@@ -1,4 +1,20 @@
 ---
+# Source: ingress-nginx/templates/controller-serviceaccount.yaml
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    helm.sh/chart: ingress-nginx-4.7.2
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: release-name
+    app.kubernetes.io/version: "1.8.2"
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: controller
+  name: release-name-ingress-nginx
+  namespace: default
+automountServiceAccountToken: true
+---
 # Source: ingress-nginx/templates/controller-configmap.yaml
 apiVersion: v1
 kind: ConfigMap
@@ -151,7 +167,7 @@ spec:
       nodeSelector: 
         kubernetes.io/os: linux
         role: ingress
-      serviceAccountName: default
+      serviceAccountName: release-name-ingress-nginx
       terminationGracePeriodSeconds: 300
 ---
 # Source: ingress-nginx/templates/controller-ingressclass.yaml
