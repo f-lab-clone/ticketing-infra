@@ -10,3 +10,14 @@ spec:
     targetPort: {{ .Values.backend.port }}
   selector:
     {{- include "ticketing-chart.selectorLabels" . | nindent 4 }}
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: prometheus-grafana
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ExternalName
+  externalName: prometheus-grafana.monitoring.svc.cluster.local
+  ports:
+  - port: 80
