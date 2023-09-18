@@ -1,4 +1,10 @@
 grafana:
+  ingress:
+    ingressClassName: nginx
+    enabled: true
+    annotations:
+      nginx.ingress.kubernetes.io/rewrite-target: /
+    path: /grafana
   sidecar:
     dashboards:
       enabled: true
