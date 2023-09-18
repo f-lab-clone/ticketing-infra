@@ -7,7 +7,7 @@ module "eks" {
   cluster_endpoint_private_access = false
   cluster_endpoint_public_access  = true
 
-  vpc_id     = module.vpc.vpc_id
+  vpc_id= module.vpc.vpc_id
   subnet_ids = concat(module.vpc.public_subnets, module.vpc.private_subnets)
 
   enable_irsa = true
@@ -84,7 +84,14 @@ module "eks" {
       from_port   = 80
       to_port     = 80
       type        = "ingress"
-      cidr_blocks      = ["0.0.0.0/0"]
+      cidr_blocks = ["0.0.0.0/0"]
+    }
+    nodeport_http = {
+      description = "open nodeport access"
+      protocol    = "-1"
+      from_port   = 30000
+      to_port     = 30000
+      type        = "ingress"
     }
   }
 
