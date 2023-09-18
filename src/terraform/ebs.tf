@@ -13,9 +13,19 @@ module "ebs_csi_eks_role" {
   }
 }
 
+resource "kubernetes_service_account" "ticketing_ebs" {
+  metadata {
+    name = "ticketing-ebs"
+    namespace = "default"
+    annotations = {
+      "eks.amazonaws.com/role-arn" = module.ebs_csi_eks_role.iam_role_arn
+    }
+  }
+}
+
 resource "helm_release" "ebs_csi_driver" {
   name       = "aws-ebs-csi-driver"
-  namespace  = "kube-system"
+  namespace  = "default"
   repository = "https://kubernetes-sigs.github.io/aws-ebs-csi-driver"
   chart      = "aws-ebs-csi-driver"
 
