@@ -13,6 +13,16 @@ grafana:
 
 prometheus:
   prometheusSpec:
+
+    storageSpec:
+     volumeClaimTemplate:
+       spec:
+         storageClassName: gp3
+         accessModes: ["ReadWriteOnce"]
+         resources:
+           requests:
+             storage: 2Gi
+
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"
         static_configs:
