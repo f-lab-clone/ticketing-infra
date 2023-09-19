@@ -15,15 +15,13 @@ prometheus:
   prometheusSpec:
 
     storageSpec:
-
-    # Using PersistentVolumeClaim
      volumeClaimTemplate:
        spec:
-         storageClassName: gp3-storage
+         storageClassName: gp3
          accessModes: ["ReadWriteOnce"]
          resources:
            requests:
-             storage: 1Gi
+             storage: 2Gi
 
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"
