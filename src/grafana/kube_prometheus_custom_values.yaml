@@ -13,6 +13,9 @@ grafana:
 
 prometheus:
   prometheusSpec:
+    enableRemoteWriteReceiver: true
+    enableFeatures: 
+      - native-histograms
 
     storageSpec:
      volumeClaimTemplate:
