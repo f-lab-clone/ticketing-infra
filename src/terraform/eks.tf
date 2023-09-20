@@ -79,7 +79,6 @@ module "eks" {
 
   node_security_group_additional_rules = {
     ingress_http = {
-      description = "open http access"
       protocol    = "-1"
       from_port   = 80
       to_port     = 80
@@ -87,7 +86,6 @@ module "eks" {
       cidr_blocks = ["0.0.0.0/0"]
     }
     nodeport_http = {
-      description = "open nodeport access"
       protocol    = "-1"
       from_port   = 30000
       to_port     = 30010

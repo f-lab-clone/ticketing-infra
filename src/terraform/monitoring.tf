@@ -38,6 +38,7 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
   data = {
     "test-dashboard.json" = file("${path.module}/../grafana/dashboards/test_dashboard.json"),
     "mysql-exporter.json" = file("${path.module}/../grafana/dashboards/mysql_exporter.json"),
-    "spring-actuator.json" = file("${path.module}/../grafana/dashboards/spring_actuator.json")
+    "spring-actuator.json" = file("${path.module}/../grafana/dashboards/spring_actuator.json"),
+    "k6.json" = file("${path.module}/../grafana/dashboards/k6.json")
   }
 }
