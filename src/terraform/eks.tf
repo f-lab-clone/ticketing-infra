@@ -90,7 +90,7 @@ module "eks" {
       description = "open nodeport access"
       protocol    = "-1"
       from_port   = 30000
-      to_port     = 30000
+      to_port     = 30010
       type        = "ingress"
     }
   }
