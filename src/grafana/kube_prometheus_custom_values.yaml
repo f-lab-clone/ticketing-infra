@@ -1,4 +1,8 @@
 grafana:
+  nodeSelector:
+    kubernetes.io/os: linux
+    role: backend
+
   sidecar:
     dashboards:
       enabled: true
@@ -13,6 +17,9 @@ grafana:
 
 prometheus:
   prometheusSpec:
+    nodeSelector:
+      kubernetes.io/os: linux
+      role: backend
 
     storageSpec:
      volumeClaimTemplate:
@@ -32,3 +39,19 @@ prometheus:
         static_configs:
           - targets: ["development-ticketing-application.default:8080"]
         metrics_path: "/actuator/prometheus"
+
+prometheusOperator:
+  nodeSelector:
+    kubernetes.io/os: linux
+    role: backend
+
+alertmanager:
+  enabled: false
+  # nodeSelector:
+  #   kubernetes.io/os: linux
+  #   role: backend
+
+kubeStateMetrics:
+  nodeSelector:
+    kubernetes.io/os: linux
+    role: backend
