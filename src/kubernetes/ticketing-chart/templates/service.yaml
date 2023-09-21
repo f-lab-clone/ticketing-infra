@@ -31,16 +31,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  annotations:
-  name: external-to-kube-prometheus-prometheus
-  namespace: default
-spec:
-  type: ExternalName
-  externalName: prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local
----
-apiVersion: v1
-kind: Service
-metadata:
   name: prometheus-kube-prometheus-prometheus-node-port
   namespace: monitoring
 spec:
