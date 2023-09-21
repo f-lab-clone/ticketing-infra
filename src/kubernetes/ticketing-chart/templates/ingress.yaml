@@ -1,22 +1,22 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: {{ include "ticketing-chart.fullname" . }}
-  namespace: monitoring
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
-spec:
-  rules:
-  - http:
-      paths:
-      - path: /api/v1/write
-        pathType: Exact
-        backend:
-          service:
-            name: kube-prometheus-prometheus
-            port:
-              number: 9090
-  ingressClassName: nginx
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: {{ include "ticketing-chart.fullname" . }}
+#   namespace: monitoring
+#   annotations:
+#     nginx.ingress.kubernetes.io/rewrite-target: /
+# spec:
+#   rules:
+#   - http:
+#       paths:
+#       - path: /api/v1/write
+#         pathType: Exact
+#         backend:
+#           service:
+#             name: kube-prometheus-prometheus
+#             port:
+#               number: 9090
+#   ingressClassName: nginx
 # ---
 # apiVersion: networking.k8s.io/v1
 # kind: Ingress
