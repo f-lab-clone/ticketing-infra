@@ -15,7 +15,7 @@ spec:
           service:
             name: headless-to-kube-prometheus-prometheus
             port:
-              number: {{ .Values.backend.port }}
+              number: 9090
       - path: /
         pathType: Prefix
         backend:
