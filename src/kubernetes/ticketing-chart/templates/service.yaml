@@ -31,6 +31,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
+  annotations:
+  name: headless-to-kube-prometheus-prometheus
+  namespace: default
+spec:
+  clusterIP: None
+  externalName: prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local
+---
+apiVersion: v1
+kind: Service
+metadata:
   name: prometheus-kube-prometheus-prometheus-node-port
   namespace: monitoring
 spec:
