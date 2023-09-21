@@ -42,3 +42,20 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
     "k6.json" = file("${path.module}/../grafana/dashboards/k6.json")
   }
 }
+
+resource "random_password" "basic_auth_password" {
+  length           = 32
+  special          = true
+  override_special = "_@"
+}
+
+resource "kubernetes_secret" "basic_auth_secret" {
+  type = "Opaque"
+  metadata {
+    name = "remote-write-basic-auth"
+    namespace = "monitoring"
+  }
+  data = {
+    "auth" : "remote_write_user:${bcrypt(random_password.basic_auth_password.result)}"
+  }
+}
