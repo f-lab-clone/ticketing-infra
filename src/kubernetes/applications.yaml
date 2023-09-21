@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/f-lab-clone/ticketing-infra.git
-    targetRevision: feat/57-prometheus-remote-write
+    targetRevision: HEAD
     path: src/kubernetes/ticketing-chart
   
   destination:
