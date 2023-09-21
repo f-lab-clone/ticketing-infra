@@ -253,37 +253,6 @@ subjects:
     name: development-ingress-nginx
     namespace: "default"
 ---
-# Source: ingress-nginx/templates/controller-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  annotations:
-  labels:
-    helm.sh/chart: ingress-nginx-4.7.2
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: development
-    app.kubernetes.io/version: "1.8.2"
-    app.kubernetes.io/part-of: ingress-nginx
-    app.kubernetes.io/managed-by: Helm
-    app.kubernetes.io/component: controller
-  name: development-ingress-nginx-controller
-  namespace: default
-spec:
-  type: LoadBalancer
-  ipFamilyPolicy: SingleStack
-  ipFamilies: 
-    - IPv4
-  ports:
-    - name: http
-      port: 80
-      protocol: TCP
-      targetPort: http
-      appProtocol: http
-  selector:
-    app.kubernetes.io/name: ingress-nginx
-    app.kubernetes.io/instance: development
-    app.kubernetes.io/component: controller
----
 # Source: ingress-nginx/templates/controller-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment

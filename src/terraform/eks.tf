@@ -27,7 +27,7 @@ module "eks" {
         role = "ingress"
       }
 
-      instance_types = ["t2.medium"]
+      instance_types = ["t2.small"]
       capacity_type  = "SPOT"
 
       subnet_ids = module.vpc.public_subnets
@@ -48,7 +48,7 @@ module "eks" {
     }
   }
   manage_aws_auth_configmap = true
-
+  create_cloudwatch_log_group = false
   aws_auth_roles = concat([
     {
       rolearn  = module.eks_admins_iam_role.iam_role_arn
