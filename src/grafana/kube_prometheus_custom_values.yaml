@@ -20,6 +20,9 @@ prometheus:
     nodeSelector:
       kubernetes.io/os: linux
       role: backend
+    enableRemoteWriteReceiver: true
+    enableFeatures: 
+      - native-histograms
 
     storageSpec:
      volumeClaimTemplate:

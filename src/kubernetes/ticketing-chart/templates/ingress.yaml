@@ -1,6 +1,28 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
+  name: prometheus-remote-write
+  namespace: monitoring
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /api/v1/write
+    nginx.ingress.kubernetes.io/auth-type: basic
+    nginx.ingress.kubernetes.io/auth-secret: remote-write-basic-auth
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /api/v1/write
+        pathType: Exact
+        backend:
+          service:
+            name: prometheus-kube-prometheus-prometheus
+            port:
+              number: 9090
+  ingressClassName: nginx
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
   name: {{ include "ticketing-chart.fullname" . }}
   namespace: {{ .Values.namespace }}
   annotations:
