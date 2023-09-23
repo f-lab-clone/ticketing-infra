@@ -24,14 +24,14 @@ prometheus:
     enableFeatures: 
       - native-histograms
 
-    storageSpec:
-     volumeClaimTemplate:
-       spec:
-         storageClassName: gp3
-         accessModes: ["ReadWriteOnce"]
-         resources:
-           requests:
-             storage: 2Gi
+    # storageSpec:
+    #  volumeClaimTemplate:
+    #    spec:
+    #      storageClassName: gp3
+    #      accessModes: ["ReadWriteOnce"]
+    #      resources:
+    #        requests:
+    #          storage: 2Gi
 
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"
@@ -50,9 +50,9 @@ prometheusOperator:
 
 alertmanager:
   enabled: false
-  # nodeSelector:
-  #   kubernetes.io/os: linux
-  #   role: backend
+  nodeSelector:
+    kubernetes.io/os: linux
+    role: backend
 
 kubeStateMetrics:
   nodeSelector:
