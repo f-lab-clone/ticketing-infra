@@ -253,6 +253,32 @@ subjects:
     name: development-ingress-nginx
     namespace: "default"
 ---
+# Source: ingress-nginx/templates/controller-service-metrics.yaml
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    helm.sh/chart: ingress-nginx-4.7.2
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: development
+    app.kubernetes.io/version: "1.8.2"
+    app.kubernetes.io/part-of: ingress-nginx
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: controller
+  name: development-ingress-nginx-controller-metrics
+  namespace: default
+spec:
+  type: ClusterIP
+  ports:
+    - name: metrics
+      port: 10254
+      protocol: TCP
+      targetPort: metrics
+  selector:
+    app.kubernetes.io/name: ingress-nginx
+    app.kubernetes.io/instance: development
+    app.kubernetes.io/component: controller
+---
 # Source: ingress-nginx/templates/controller-deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
@@ -351,6 +377,9 @@ spec:
               containerPort: 443
               protocol: TCP
               hostPort: 443
+            - name: metrics
+              containerPort: 10254
+              protocol: TCP
           resources: 
             requests:
               cpu: 100m
