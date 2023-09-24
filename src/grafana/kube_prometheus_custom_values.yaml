@@ -43,6 +43,10 @@ prometheus:
           - targets: ["development-ticketing-application.default:8080"]
         metrics_path: "/actuator/prometheus"
 
+      - job_name: "nginx-controller"
+        static_configs:
+          - targets: ["development-ingress-nginx-controller.default:10254"]
+
 prometheusOperator:
   nodeSelector:
     kubernetes.io/os: linux
