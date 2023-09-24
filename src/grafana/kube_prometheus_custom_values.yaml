@@ -45,7 +45,7 @@ prometheus:
 
       - job_name: "nginx-controller"
         static_configs:
-          - targets: ["development-ingress-nginx-controller.default:10254"]
+          - targets: ["development-ingress-nginx-controller-metrics.default:10254"]
 
 prometheusOperator:
   nodeSelector:
