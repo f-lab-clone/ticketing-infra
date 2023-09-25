@@ -39,9 +39,18 @@ prometheus:
           - targets: ["mysql-exporter-prometheus-mysql-exporter:9104"]
 
       - job_name: "spring-actuator"
-        static_configs:
-          - targets: ["development-ticketing-application.default:8080"]
+        # static_configs:
+        #   - targets: ["development-ticketing-application.default:8080"]
         metrics_path: "/actuator/prometheus"
+        kubernetes_sd_configs:
+          - role: pod
+            selectors:
+              - role: "pod"
+                label: "app.kubernetes.io/name=ticketing-application"
+
+      - job_name: "nginx-controller"
+        static_configs:
+          - targets: ["development-ingress-nginx-controller-metrics.default:10254"]
 
 prometheusOperator:
   nodeSelector:
@@ -50,9 +59,9 @@ prometheusOperator:
 
 alertmanager:
   enabled: false
-  # nodeSelector:
-  #   kubernetes.io/os: linux
-  #   role: backend
+  nodeSelector:
+    kubernetes.io/os: linux
+    role: backend
 
 kubeStateMetrics:
   nodeSelector:

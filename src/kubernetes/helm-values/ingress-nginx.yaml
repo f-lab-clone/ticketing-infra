@@ -651,11 +651,11 @@ controller:
     port: 10254
     portName: metrics
     # if this port is changed, change healthz-port: in extraArgs: accordingly
-    enabled: false
+    enabled: true
     service:
       annotations: {}
-      # prometheus.io/scrape: "true"
-      # prometheus.io/port: "10254"
+      prometheus.io/scrape: "true"
+      prometheus.io/port: "10254"
       # -- Labels to be added to the metrics service resource
       labels: {}
       # clusterIP: ""
@@ -671,8 +671,9 @@ controller:
       # externalTrafficPolicy: ""
       # nodePort: ""
     serviceMonitor:
-      enabled: false
-      additionalLabels: {}
+      enabled: true
+      additionalLabels:
+        release: prometheus
       ## The label to use to retrieve the job name from.
       ## jobLabel: "app.kubernetes.io/name"
       namespace: ""
