@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/f-lab-clone/ticketing-infra.git
-    targetRevision: feat/51-replica
+    targetRevision: HEAD
     path: src/kubernetes/ticketing-chart
   
   destination:
