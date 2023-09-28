@@ -3,6 +3,11 @@ resource "helm_release" "argocd" {
   chart      = "argo-cd"
   repository = "https://argoproj.github.io/argo-helm"
   namespace  = "argocd"
+
+  set {
+    name = "global.nodeSelector.role"
+    value = "backend"
+  }
 }
 
 resource "kubernetes_manifest" "development" {
