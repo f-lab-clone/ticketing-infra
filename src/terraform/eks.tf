@@ -47,8 +47,10 @@ module "eks" {
       subnet_ids = module.vpc.private_subnets
     }
   }
+
   manage_aws_auth_configmap = true
   create_cloudwatch_log_group = false
+
   aws_auth_roles = concat([
     {
       rolearn  = module.eks_admins_iam_role.iam_role_arn
@@ -79,19 +81,21 @@ module "eks" {
 
   node_security_group_additional_rules = {
     ingress_http = {
-      protocol    = "-1"
+      protocol    = "tcp"
       from_port   = 80
       to_port     = 80
       type        = "ingress"
       cidr_blocks = ["0.0.0.0/0"]
     }
     nodeport_http = {
-      protocol    = "-1"
+      protocol    = "tcp"
       from_port   = 30000
       to_port     = 30010
       type        = "ingress"
+      cidr_blocks = ["0.0.0.0/0"]
     }
   }
+
 
   tags = {
     Environment = "development"
