@@ -45,7 +45,15 @@ module "db" {
       name  = "skip-character-set-client-handshake"
       value = "1"
       apply_method = "pending-reboot"
-    }
+    },
+    {
+      name  = "slow_query_log"
+      value = "1"
+    },
+    {
+      name  = "long_query_time"
+      value = "1"
+    } 
   ]
 }
 
