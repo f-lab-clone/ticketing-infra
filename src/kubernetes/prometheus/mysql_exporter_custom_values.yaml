@@ -5,3 +5,7 @@ mysql:
   port: 3306
   protocol: "TCP"
   user: "exporter"
+
+nodeSelector:
+  kubernetes.io/os: linux
+  role: backend

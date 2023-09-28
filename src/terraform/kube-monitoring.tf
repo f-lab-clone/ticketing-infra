@@ -5,7 +5,7 @@ resource "helm_release" "kube-prometheus" {
   repository = "https://prometheus-community.github.io/helm-charts"
 
   values = [
-    "${file("${path.module}/../grafana/kube_prometheus_custom_values.yaml")}"
+    "${file("${path.module}/../kubernetes/prometheus/kube_prometheus_custom_values.yaml")}"
   ]
 }
 
@@ -16,7 +16,7 @@ resource "helm_release" "mysql-exporter" {
   repository = "https://prometheus-community.github.io/helm-charts"
 
   values = [
-    "${file("${path.module}/../grafana/mysql_exporter_custom_values.yaml")}"
+    "${file("${path.module}/../kubernetes/prometheus/mysql_exporter_custom_values.yaml")}"
   ]
 }
 
@@ -36,10 +36,10 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
   }
 
   data = {
-    "test-dashboard.json" = file("${path.module}/../grafana/dashboards/test_dashboard.json"),
-    "mysql-exporter.json" = file("${path.module}/../grafana/dashboards/mysql_exporter.json"),
-    "spring-actuator.json" = file("${path.module}/../grafana/dashboards/spring_actuator.json"),
-    "nginx-controller.json" = file("${path.module}/../grafana/dashboards/nginx_controller.json"),
-    "k6.json" = file("${path.module}/../grafana/dashboards/k6.json")
+    "test-dashboard.json" = file("${path.module}/../kubernetes/prometheus/dashboards/test_dashboard.json"),
+    "mysql-exporter.json" = file("${path.module}/../kubernetes/prometheus/dashboards/mysql_exporter.json"),
+    "spring-actuator.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring_actuator.json"),
+    "nginx-controller.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx_controller.json"),
+    "k6.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6.json")
   }
 }

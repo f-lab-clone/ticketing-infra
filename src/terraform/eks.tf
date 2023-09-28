@@ -33,18 +33,18 @@ module "eks" {
       subnet_ids = module.vpc.public_subnets
     }
     backend = {
-      desired_size = 3
+      desired_size = 4
       min_size     = 3
-      max_size     = 3
+      max_size     = 4
 
       labels = {
         role = "backend"
       }
 
-      instance_types = ["t2.small"]
+      instance_types = ["t2.small", "t3.small"]
       capacity_type  = "SPOT"
 
-      subnet_ids = module.vpc.public_subnets
+      subnet_ids = module.vpc.private_subnets
     }
   }
   manage_aws_auth_configmap = true
