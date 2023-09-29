@@ -36,7 +36,6 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
   }
 
   data = {
-    "test-dashboard.json" = file("${path.module}/../kubernetes/prometheus/dashboards/test_dashboard.json"),
     "mysql-exporter.json" = file("${path.module}/../kubernetes/prometheus/dashboards/mysql_exporter.json"),
     "spring-actuator.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring_actuator.json"),
     "nginx-controller.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx_controller.json"),
