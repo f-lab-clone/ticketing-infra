@@ -382,8 +382,8 @@ spec:
               protocol: TCP
           resources: 
             requests:
-              cpu: 100m
-              memory: 90Mi
+              cpu: 0.5
+              memory: 100Mi
       hostNetwork: true
       nodeSelector: 
         kubernetes.io/os: linux
