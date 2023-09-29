@@ -25,14 +25,14 @@ prometheus:
     enableFeatures: 
       - native-histograms
 
-    storageSpec:
-     volumeClaimTemplate:
-       spec:
-         storageClassName: gp3
-         accessModes: ["ReadWriteOnce"]
-         resources:
-           requests:
-             storage: 2Gi
+    # storageSpec:
+    #  volumeClaimTemplate:
+    #    spec:
+    #      storageClassName: gp3
+    #      accessModes: ["ReadWriteOnce"]
+    #      resources:
+    #        requests:
+    #          storage: 2Gi
 
     additionalScrapeConfigs:
       - job_name: "mysql-exporter"

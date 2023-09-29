@@ -33,6 +33,12 @@ spec:
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.backend.image.repository }}:{{ .Values.backend.image.tag }}"
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+
           
           imagePullPolicy: Always
 

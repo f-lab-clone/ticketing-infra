@@ -383,7 +383,7 @@ spec:
           resources: 
             requests:
               cpu: 100m
-              memory: 90Mi
+              memory: 100Mi
       hostNetwork: true
       nodeSelector: 
         kubernetes.io/os: linux

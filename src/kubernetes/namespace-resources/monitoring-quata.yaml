@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: monitoring-resourcequota
+  namespace: monitoring
+spec:
+  hard:
+    limits.cpu: 1
