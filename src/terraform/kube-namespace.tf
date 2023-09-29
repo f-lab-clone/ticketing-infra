@@ -15,14 +15,16 @@ resource "kubernetes_namespace" "ingress-nginx-ns" {
 }
 
 
-resource "kubernetes_manifest" "argocd-quata" {
-  depends_on = [kubernetes_namespace.argo-ns]
+# Disable because it makes to difficult to deploy pods
 
-  manifest = yamldecode(file("${path.module}/../kubernetes/namespace-resources/argocd-quata.yaml"))
-}
+# resource "kubernetes_manifest" "argocd-quata" {
+#   depends_on = [kubernetes_namespace.argo-ns]
 
-resource "kubernetes_manifest" "monitoring-quata" {
-  depends_on = [kubernetes_namespace.monitoring-ns]
+#   manifest = yamldecode(file("${path.module}/../kubernetes/namespace-resources/argocd-quata.yaml"))
+# }
 
-  manifest = yamldecode(file("${path.module}/../kubernetes/namespace-resources/monitoring-quata.yaml"))
-}
+# resource "kubernetes_manifest" "monitoring-quata" {
+#   depends_on = [kubernetes_namespace.monitoring-ns]
+
+#   manifest = yamldecode(file("${path.module}/../kubernetes/namespace-resources/monitoring-quata.yaml"))
+# }

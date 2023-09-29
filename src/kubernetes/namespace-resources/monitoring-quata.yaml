@@ -5,4 +5,4 @@ metadata:
   namespace: monitoring
 spec:
   hard:
-    limits.cpu: 1
+    limits.cpu: 2000m

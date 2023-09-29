@@ -1,4 +1,9 @@
 resource "helm_release" "kube-prometheus" {
+  depends_on = [
+    helm_release.mysql-exporter,
+    kubernetes_config_map.grafana-dashboards-custom
+  ]
+
   chart      = "kube-prometheus-stack"
   name       = "prometheus"
   namespace  = "monitoring"
