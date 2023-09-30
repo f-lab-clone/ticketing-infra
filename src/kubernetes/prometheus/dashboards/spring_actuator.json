@@ -4394,8 +4394,8 @@
     ]
   },
   "time": {
-    "from": "2023-09-29T04:42:07.364Z",
-    "to": "2023-09-29T05:12:07.364Z"
+    "from": "now-6h",
+    "to": "now"
   },
   "timepicker": {
     "refresh_intervals": [
