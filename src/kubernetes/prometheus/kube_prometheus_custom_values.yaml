@@ -17,6 +17,9 @@ grafana:
 
 prometheus:
   prometheusSpec:
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    
     nodeSelector:
       kubernetes.io/os: linux
       role: backend
