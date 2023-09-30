@@ -53,6 +53,7 @@ prometheus:
                 label: "app.kubernetes.io/name=ticketing-application"
 
       - job_name: "nginx-controller"
+        metrics_path: "/metrics"
         static_configs:
           - targets: ["development-ingress-nginx-controller-metrics.default:10254"]
 
