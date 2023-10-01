@@ -31,13 +31,6 @@ spec:
   rules:
   - http:
       paths:
-      - path: /
-        pathType: Prefix
-        backend:
-          service:
-            name: {{ include "ticketing-chart.fullname" . }}
-            port:
-              number: {{ .Values.backend.port }}
       - path: /events
         pathType: Prefix
         backend:
@@ -53,6 +46,13 @@ spec:
             port:
               number: {{ .Values.backend.port }}
       - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}
+            port:
+              number: {{ .Values.backend.port }}
+      - path: /
         pathType: Prefix
         backend:
           service:
