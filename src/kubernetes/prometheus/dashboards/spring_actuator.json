@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 12464,
   "graphTooltip": 0,
-  "id": 2,
+  "id": 5,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -90,7 +90,7 @@
         "overrides": []
       },
       "gridPos": {
-        "h": 3,
+        "h": 6,
         "w": 6,
         "x": 0,
         "y": 1
@@ -100,14 +100,14 @@
       "maxDataPoints": 100,
       "options": {
         "colorMode": "value",
-        "graphMode": "none",
+        "graphMode": "area",
         "justifyMode": "auto",
-        "orientation": "horizontal",
+        "orientation": "auto",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ],
-          "fields": "/^process_uptime_seconds{app=\"orders\", app_kubernetes_io_instance=\"mushop\", app_kubernetes_io_name=\"orders\", instance=\"10.1.0.72:80\", job=\"kubernetes-pods\", kubernetes_namespace=\"mushop\", kubernetes_pod_name=\"mushop-orders-67bb8f45c8-5cr5p\", mockmode=\"false\", pod_template_hash=\"67bb8f45c8\", version=\"local\"}$/",
+          "fields": "",
           "values": false
         },
         "textMode": "auto"
@@ -418,88 +418,6 @@
       "yaxis": {
         "align": false
       }
-    },
-    {
-      "datasource": {
-        "type": "prometheus",
-        "uid": "prometheus"
-      },
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "thresholds"
-          },
-          "mappings": [
-            {
-              "options": {
-                "match": "null",
-                "result": {
-                  "text": "N/A"
-                }
-              },
-              "type": "special"
-            }
-          ],
-          "thresholds": {
-            "mode": "absolute",
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "red",
-                "value": 80
-              }
-            ]
-          },
-          "unit": "dateTimeAsIso"
-        },
-        "overrides": []
-      },
-      "gridPos": {
-        "h": 3,
-        "w": 6,
-        "x": 0,
-        "y": 4
-      },
-      "id": 56,
-      "links": [],
-      "maxDataPoints": 100,
-      "options": {
-        "colorMode": "value",
-        "graphMode": "none",
-        "justifyMode": "auto",
-        "orientation": "horizontal",
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ],
-          "fields": "/^{app=\"orders\", app_kubernetes_io_instance=\"mushop\", app_kubernetes_io_name=\"orders\", instance=\"10.1.0.72:80\", job=\"kubernetes-pods\", kubernetes_namespace=\"mushop\", kubernetes_pod_name=\"mushop-orders-67bb8f45c8-5cr5p\", mockmode=\"false\", pod_template_hash=\"67bb8f45c8\", version=\"local\"}$/",
-          "values": false
-        },
-        "textMode": "auto"
-      },
-      "pluginVersion": "10.1.2",
-      "targets": [
-        {
-          "datasource": {
-            "type": "prometheus",
-            "uid": "prometheus"
-          },
-          "editorMode": "code",
-          "expr": "process_start_time_seconds{application=\"$application\", instance=\"$instance\"}*1000",
-          "format": "time_series",
-          "intervalFactor": 2,
-          "legendFormat": "",
-          "metric": "",
-          "range": true,
-          "refId": "A",
-          "step": 14400
-        }
-      ],
-      "title": "Start time",
-      "type": "stat"
     },
     {
       "aliasColors": {},
@@ -1870,8 +1788,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2068,8 +1985,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2451,8 +2367,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2538,8 +2453,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2623,8 +2537,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -2708,8 +2621,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3357,8 +3269,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3465,8 +3376,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -3674,8 +3584,7 @@
                 "mode": "absolute",
                 "steps": [
                   {
-                    "color": "green",
-                    "value": null
+                    "color": "green"
                   },
                   {
                     "color": "red",
@@ -4249,7 +4158,7 @@
       "type": "row"
     }
   ],
-  "refresh": false,
+  "refresh": "",
   "schemaVersion": 38,
   "style": "dark",
   "tags": [],
@@ -4258,8 +4167,8 @@
       {
         "current": {
           "selected": true,
-          "text": "10.0.30.211:8080",
-          "value": "10.0.30.211:8080"
+          "text": "10.0.22.205:8080",
+          "value": "10.0.22.205:8080"
         },
         "datasource": {
           "type": "prometheus",
@@ -4394,7 +4303,7 @@
     ]
   },
   "time": {
-    "from": "now-6h",
+    "from": "now-12h",
     "to": "now"
   },
   "timepicker": {
