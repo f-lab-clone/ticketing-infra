@@ -65,7 +65,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "description": "Total time for NGINX and upstream servers to process a request and send a response",
       "fieldConfig": {
@@ -164,7 +164,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "description": "The time spent on receiving the response from the upstream server",
       "fieldConfig": {
@@ -265,7 +265,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -354,7 +354,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "description": "For each path observed, its median upstream response time",
       "fieldConfig": {
@@ -444,7 +444,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "description": "Percentage of 4xx and 5xx responses among all responses.",
       "fieldConfig": {
@@ -534,7 +534,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "description": "For each path observed, the sum of upstream request time",
       "fieldConfig": {
@@ -624,7 +624,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -713,7 +713,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -810,7 +810,7 @@
       "dashLength": 10,
       "dashes": false,
       "datasource": {
-        "uid": "${DS_PROMETHEUS}"
+        "uid": "prometheus"
       },
       "fieldConfig": {
         "defaults": {
@@ -924,7 +924,7 @@
         "allValue": ".*",
         "current": {},
         "datasource": {
-          "uid": "${DS_PROMETHEUS}"
+          "uid": "prometheus"
         },
         "definition": "label_values(nginx_ingress_controller_requests, ingress) ",
         "hide": 0,
