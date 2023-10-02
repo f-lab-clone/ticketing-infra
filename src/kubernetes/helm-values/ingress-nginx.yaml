@@ -155,8 +155,10 @@ controller:
   maxmindLicenseKey: ""
   # -- Additional command line arguments to pass to Ingress-Nginx Controller
   # E.g. to specify the default SSL certificate you can use
-  extraArgs: {}
-  ## extraArgs:
+  # extraArgs: {}
+      
+  extraArgs:
+       metrics-per-host: false
   ##   default-ssl-certificate: "<namespace>/<secret_name>"
 
   # -- Additional environment variables to set
@@ -309,7 +311,10 @@ controller:
   healthCheckHost: ""
   # -- Annotations to be added to controller pods
   ##
-  podAnnotations: {}
+  podAnnotations:
+    prometheus.io/port: "10254"
+    prometheus.io/scrape: "true"
+
   replicaCount: 1
   # -- Minimum available pods set in PodDisruptionBudget.
   # Define either 'minAvailable' or 'maxUnavailable', never both.
@@ -679,7 +684,7 @@ controller:
       ## To scrape all, use the following:
       ## namespaceSelector:
       ##   any: true
-      scrapeInterval: 30s
+      scrapeInterval: 15s
       # honorLabels: true
       targetLabels: []
       relabelings: []

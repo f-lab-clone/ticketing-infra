@@ -17,6 +17,10 @@ grafana:
 
 prometheus:
   prometheusSpec:
+    scrapeInterval: '15s' # for spike test (~ 1m)
+    podMonitorSelectorNilUsesHelmValues: false
+    serviceMonitorSelectorNilUsesHelmValues: false
+    
     nodeSelector:
       kubernetes.io/os: linux
       role: backend
@@ -50,6 +54,8 @@ prometheus:
                 label: "app.kubernetes.io/name=ticketing-application"
 
       - job_name: "nginx-controller"
+        metrics_path: "/metrics"
+        scrape_interval: '15s'
         static_configs:
           - targets: ["development-ingress-nginx-controller-metrics.default:10254"]
 

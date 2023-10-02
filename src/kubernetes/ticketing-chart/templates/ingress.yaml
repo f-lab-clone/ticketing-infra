@@ -25,12 +25,33 @@ kind: Ingress
 metadata:
   name: {{ include "ticketing-chart.fullname" . }}
   namespace: {{ .Values.namespace }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /
+  # annotations:
+  #   nginx.ingress.kubernetes.io/rewrite-target: /
 spec:
   rules:
   - http:
       paths:
+      - path: /events
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}
+            port:
+              number: {{ .Values.backend.port }}
+      - path: /reservations
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}
+            port:
+              number: {{ .Values.backend.port }}
+      - path: /users
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}
+            port:
+              number: {{ .Values.backend.port }}
       - path: /
         pathType: Prefix
         backend:
