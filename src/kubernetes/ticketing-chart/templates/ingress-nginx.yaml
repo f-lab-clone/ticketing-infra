@@ -431,7 +431,7 @@ metadata:
 spec:
   endpoints:
     - port: metrics
-      interval: 30s
+      interval: 15s
   namespaceSelector:
     matchNames:
       - default

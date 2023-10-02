@@ -684,7 +684,7 @@ controller:
       ## To scrape all, use the following:
       ## namespaceSelector:
       ##   any: true
-      scrapeInterval: 30s
+      scrapeInterval: 15s
       # honorLabels: true
       targetLabels: []
       relabelings: []
