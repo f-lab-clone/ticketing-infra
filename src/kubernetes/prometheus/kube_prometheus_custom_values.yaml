@@ -17,6 +17,7 @@ grafana:
 
 prometheus:
   prometheusSpec:
+    scrapeInterval: '15s' # for spike test (~ 1m)
     podMonitorSelectorNilUsesHelmValues: false
     serviceMonitorSelectorNilUsesHelmValues: false
     
