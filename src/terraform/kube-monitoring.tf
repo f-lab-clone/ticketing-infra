@@ -47,7 +47,7 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
     "spring-http.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring-http.json"),
     "jvm.json" = file("${path.module}/../kubernetes/prometheus/dashboards/jvm.json"),
 
-    "nginx-controller.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx_controller.json"),
+    "nginx.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx.json"),
     "nginx-request-performance.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx-request-performance.json")
 
     "k6-native-histograms.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6-native-histograms.json")    
