@@ -51,5 +51,7 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
     "nginx-request-performance.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx-request-performance.json")
 
     "k6-native-histograms.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6-native-histograms.json")    
+    
+    "cluster-all-in-one.json" = file("${path.module}/../kubernetes/prometheus/dashboards/cluster-all-in-one.json"),
   }
 }
