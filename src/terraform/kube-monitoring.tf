@@ -44,16 +44,11 @@ resource "kubernetes_config_map" "grafana-dashboards-custom" {
     "mysql-exporter.json" = file("${path.module}/../kubernetes/prometheus/dashboards/mysql_exporter.json"),
 
     "spring-actuator.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring_actuator.json"),
-    "spring-http-example.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring-http-example.json"),
-    
+    "spring-http.json" = file("${path.module}/../kubernetes/prometheus/dashboards/spring-http.json"),
 
-    "nginx.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx.json")
     "nginx-controller.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx_controller.json"),
     "nginx-request-performance.json" = file("${path.module}/../kubernetes/prometheus/dashboards/nginx-request-performance.json")
 
-    "k6.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6.json")
-    "k6-prometheus.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6-prometheus.json")
-    "k6-native-histograms.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6-native-histograms.json")
-    
+    "k6-native-histograms.json" = file("${path.module}/../kubernetes/prometheus/dashboards/k6-native-histograms.json")    
   }
 }

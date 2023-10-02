@@ -21,7 +21,7 @@
       }
     ]
   },
-  "description": "An example dashboard for Spring HTTP metrics",
+  "description": "An dashboard for Spring HTTP metrics",
   "editable": true,
   "fiscalYearStartMonth": 0,
   "gnetId": 17360,
@@ -1391,7 +1391,7 @@
   },
   "timepicker": {},
   "timezone": "",
-  "title": "Spring HTTP Example",
+  "title": "Spring HTTP",
   "uid": "hKW8gvD4z",
   "version": 1,
   "weekStart": ""
