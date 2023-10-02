@@ -55,6 +55,7 @@ prometheus:
 
       - job_name: "nginx-controller"
         metrics_path: "/metrics"
+        scrape_interval: '15s'
         static_configs:
           - targets: ["development-ingress-nginx-controller-metrics.default:10254"]
 
