@@ -27,6 +27,9 @@ module "db" {
   skip_final_snapshot = true
   deletion_protection = false
 
+  create_cloudwatch_log_group = false
+  enabled_cloudwatch_logs_exports = []
+
   parameters = [
     {
       name  = "character_set_client"
