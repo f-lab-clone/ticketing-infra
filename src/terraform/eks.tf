@@ -44,7 +44,7 @@ module "eks" {
       instance_types = ["t2.small", "t3.small"]
       capacity_type  = "SPOT"
 
-      subnet_ids = module.vpc.private_subnets
+      subnet_ids = module.vpc.public_subnets
     }
   }
 
