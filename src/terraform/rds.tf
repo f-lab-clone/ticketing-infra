@@ -14,8 +14,8 @@ module "db" {
   port     = 3306
   manage_master_user_password = true
 
-  allocated_storage     = 5
-  max_allocated_storage = 10
+  allocated_storage     = 20
+  max_allocated_storage = 40
 
   iam_database_authentication_enabled = true
 
@@ -26,6 +26,9 @@ module "db" {
   
   skip_final_snapshot = true
   deletion_protection = false
+
+  create_cloudwatch_log_group = false
+  enabled_cloudwatch_logs_exports = []
 
   parameters = [
     {

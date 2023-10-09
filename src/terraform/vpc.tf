@@ -9,7 +9,7 @@ module "vpc" {
   public_subnets  = ["10.0.64.0/19", "10.0.96.0/19"]
 
   map_public_ip_on_launch = true
-  enable_nat_gateway = false
+  enable_flow_log = false
   
   tags = {
     Environment = "development"

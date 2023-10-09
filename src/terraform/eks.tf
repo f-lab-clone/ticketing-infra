@@ -50,6 +50,7 @@ module "eks" {
 
   manage_aws_auth_configmap = true
   create_cloudwatch_log_group = false
+  cluster_enabled_log_types = []
 
   aws_auth_roles = concat([
     {
