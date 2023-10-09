@@ -20,7 +20,7 @@
   "fiscalYearStartMonth": 0,
   "gnetId": 14057,
   "graphTooltip": 1,
-  "id": 31,
+  "id": 8,
   "links": [],
   "liveNow": false,
   "panels": [
@@ -106,7 +106,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "calculatedInterval": "10m",
@@ -193,7 +193,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "calculatedInterval": "10m",
@@ -280,7 +280,7 @@
         },
         "textMode": "auto"
       },
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "calculatedInterval": "10m",
@@ -382,7 +382,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -532,7 +532,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -720,7 +720,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -834,7 +834,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1003,7 +1003,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1143,7 +1143,7 @@
         "alertThreshold": true
       },
       "percentage": false,
-      "pluginVersion": "10.1.1",
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1304,7 +1304,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1338,9 +1338,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1461,7 +1462,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1493,9 +1494,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1594,7 +1596,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1626,9 +1628,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -1707,62 +1710,92 @@
       }
     },
     {
-      "aliasColors": {},
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": {
+        "type": "prometheus",
         "uid": "$datasource"
       },
-      "decimals": 2,
-      "description": "**Table Locks**\n\nMySQL takes a number of different locks for varying reasons. In this graph we see how many Table level locks MySQL has requested from the storage engine. In the case of InnoDB, many times the locks could actually be row locks as it only takes table level locks in a few specific cases.\n\nIt is most useful to compare Locks Immediate and Locks Waited. If Locks waited is rising, it means you have lock contention. Otherwise, Locks Immediate rising and falling is normal activity.",
-      "editable": true,
-      "error": false,
+      "description": "**InnoDB Row Lock Time**\n\nWhen data is locked, then that means that another ***session can NOT update that data until the lock*** is released (which unlocks the data and allows other users to update that data). Locks are usually released by either a ROLLBACK or COMMIT SQL statement.\n\nInnoDB implements standard row-level locking where there are two types of locks, [shared (S) locks](https://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_shared_lock) and [exclusive (X) locks](https://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_exclusive_lock).\n\n* A [shared (S) lock](https://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_shared_lock) permits the transaction that holds the lock to read a row.\n* An [exclusive (X) lock](https://dev.mysql.com/doc/refman/5.7/en/glossary.html#glos_exclusive_lock) permits the transaction that holds the lock to update or delete a row.\n\n_Average Row Lock Wait Time_ is the row lock wait time divided by the number of row locks.\\\n_Row Lock Waits_ are how many times a transaction waited on a row lock per second.\\\n_Row Lock Wait Load_ is a rolling 5 minute average of Row Lock Waits.",
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisCenteredZero": false,
+            "axisColorMode": "text",
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 20,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "insertNulls": false,
+            "lineInterpolation": "linear",
+            "lineWidth": 2,
+            "pointSize": 7,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "always",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "links": [],
+          "mappings": [],
+          "min": 0,
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
+          "unit": "s"
         },
         "overrides": []
       },
-      "fill": 2,
-      "fillGradient": 0,
-      "grid": {},
       "gridPos": {
         "h": 7,
         "w": 12,
         "x": 12,
         "y": 37
       },
-      "hiddenSeries": false,
       "id": 32,
-      "legend": {
-        "alignAsTable": true,
-        "avg": true,
-        "current": false,
-        "max": true,
-        "min": true,
-        "rightSide": false,
-        "show": true,
-        "sort": "avg",
-        "sortDesc": true,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 2,
       "links": [],
-      "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "legend": {
+          "calcs": [
+            "min",
+            "max",
+            "mean"
+          ],
+          "displayMode": "table",
+          "placement": "bottom",
+          "showLegend": true
+        },
+        "tooltip": {
+          "mode": "multi",
+          "sort": "none"
+        }
       },
-      "percentage": false,
-      "pointradius": 5,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pluginVersion": "10.1.2",
       "targets": [
         {
           "calculatedInterval": "2m",
@@ -1770,13 +1803,15 @@
             "uid": "$datasource"
           },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "sum(rate(mysql_global_status_table_locks_immediate{job=~\"$job\", instance=~\"$instance\"}[$__interval]))",
+          "expr": "rate(mysql_global_status_innodb_row_lock_waits{job=~\"$job\", instance=~\"$instance\"}[$__interval]) or irate(mysql_global_status_innodb_row_lock_waits{job=~\"$job\", instance=~\"$instance\"}[$__interval])",
           "format": "time_series",
           "interval": "1m",
           "intervalFactor": 1,
-          "legendFormat": "Table Locks Immediate",
+          "legendFormat": "Row Lock Waits",
           "metric": "",
+          "range": true,
           "refId": "A",
           "step": 20
         },
@@ -1786,49 +1821,21 @@
             "uid": "$datasource"
           },
           "datasourceErrors": {},
+          "editorMode": "code",
           "errors": {},
-          "expr": "sum(rate(mysql_global_status_table_locks_waited{job=~\"$job\", instance=~\"$instance\"}[$__interval]))",
+          "expr": "rate(mysql_global_status_innodb_row_lock_time{job=~\"$job\", instance=~\"$instance\"}[$__interval])/1000 or irate(mysql_global_status_innodb_row_lock_time{job=~\"$job\", instance=~\"$instance\"}[$__interval])/1000",
           "format": "time_series",
           "interval": "1m",
           "intervalFactor": 1,
-          "legendFormat": "Table Locks Waited",
+          "legendFormat": "Row Lock Wait Load",
           "metric": "",
+          "range": true,
           "refId": "B",
           "step": 20
         }
       ],
-      "thresholds": [],
-      "timeRegions": [],
-      "title": "MySQL Table Locks",
-      "tooltip": {
-        "msResolution": false,
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
-      "type": "graph",
-      "xaxis": {
-        "mode": "time",
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": true
-        },
-        {
-          "format": "short",
-          "logBase": 1,
-          "min": 0,
-          "show": true
-        }
-      ],
-      "yaxis": {
-        "align": false
-      }
+      "title": "MySQL Row Locks",
+      "type": "timeseries"
     },
     {
       "collapsed": false,
@@ -1868,7 +1875,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -1901,9 +1908,10 @@
       "links": [],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
@@ -2016,7 +2024,7 @@
       "error": false,
       "fieldConfig": {
         "defaults": {
-          "custom": {}
+          "links": []
         },
         "overrides": []
       },
@@ -2056,9 +2064,10 @@
       ],
       "nullPointMode": "null",
       "options": {
-        "dataLinks": []
+        "alertThreshold": true
       },
       "percentage": false,
+      "pluginVersion": "10.1.2",
       "pointradius": 5,
       "points": false,
       "renderer": "flot",
