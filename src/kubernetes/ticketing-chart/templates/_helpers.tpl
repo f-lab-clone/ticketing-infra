@@ -42,10 +42,25 @@ app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
 app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- end }}
 
+{{- define "ticketing-chart.queuingLabels" -}}
+helm.sh/chart: {{ include "ticketing-chart.chart" . }}
+{{ include "ticketing-chart.queuingSelectorLabels" . }}
+{{- if .Chart.AppVersion }}
+app.kubernetes.io/version: {{ .Chart.AppVersion | quote }}
+{{- end }}
+app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- end }}
+
+
 {{/*
 Selector labels
 */}}
 {{- define "ticketing-chart.selectorLabels" -}}
 app.kubernetes.io/name: {{ include "ticketing-chart.name" . }}
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+{{- define "ticketing-chart.queuingSelectorLabels" -}}
+app.kubernetes.io/name: {{ include "ticketing-chart.name" . }}-queuing
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
