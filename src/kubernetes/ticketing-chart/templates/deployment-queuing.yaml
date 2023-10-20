@@ -32,6 +32,7 @@ spec:
 
           
           imagePullPolicy: Always
+          command: ['npm', 'run', 'start:api']
 
           ports:
             - name: http
