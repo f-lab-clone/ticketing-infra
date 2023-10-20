@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: ticketing-queuing-api
   labels:
-    {{- include "ticketing-chart.labels" . | nindent 4 }}
+    {{- include "ticketing-chart.queuingLabels" . | nindent 4 }}
   namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
-      {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
+      {{- include "ticketing-chart.queuingSelectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
+        {{- include "ticketing-chart.queuingSelectorLabels" . | nindent 8 }}
     spec:
       nodeSelector:
         role: backend
