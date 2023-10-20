@@ -14,3 +14,8 @@ backend:
   autoscaling:
     enabled: true
     replicaCount: 1
+
+
+redis:
+  image: redis:latest
+  port: 6379
