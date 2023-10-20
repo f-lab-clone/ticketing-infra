@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: ticketing-redis
+  labels:
+    app.kubernetes.io/name: ticketing-redis
 spec:
   selector:
     matchLabels:
