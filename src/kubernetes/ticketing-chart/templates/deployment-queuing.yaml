@@ -22,7 +22,7 @@ spec:
       {{- end }}
 
       containers:
-        - name: {{ .Chart.Name }}
+        - name: ticketing-queuing-api
           image: "{{ .Values.queuing-system.image.repository }}:{{ .Values.queuing-system.image.tag }}"
 
           resources:
