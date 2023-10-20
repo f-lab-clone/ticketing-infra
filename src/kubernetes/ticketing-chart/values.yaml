@@ -16,6 +16,8 @@ backend:
     replicaCount: 1
 
 queuing-system:
+  serviceAccountName: "ticketing-backend-account"
+  
   image:
     repository: 213060417361.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing-queuing-ecr
     pullPolicy: Always
