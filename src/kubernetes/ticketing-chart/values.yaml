@@ -24,7 +24,7 @@ queuing-system:
   config:
     NODE_ENV: development
     PORT: 8080
-    REDIS_HOST: redis_server
+    REDIS_HOST: ticketing-redis.default.svc.cluster.local
     REDIS_PORT: 6379
     JOB_INTEVAL_SEC: 10
     JOB_MOVE_PER_INTEVAL: 100
@@ -38,4 +38,4 @@ redis:
 
 
 nodeSelector: 
-- role: backend
+  role: backend
