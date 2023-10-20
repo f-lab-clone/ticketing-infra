@@ -1,31 +1,31 @@
-apiVersion: apps/v1
-kind: Deployment
-metadata:
-  name: ticketing-redis
-  labels:
-    {{- include "ticketing-chart.labels" . | nindent 4 }}
-spec:
-  selector:
-    matchLabels:
-      {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
-  template:
-    metadata:
-      labels:
-        {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
-    spec:
-      {{- with .Values.nodeSelector }}
-      nodeSelector:
-        {{- toYaml . | nindent 8 }}
-      {{- end }}
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: ticketing-redis
+#   labels:
+#     {{- include "ticketing-chart.labels" . | nindent 4 }}
+# spec:
+#   selector:
+#     matchLabels:
+#       {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
+#   template:
+#     metadata:
+#       labels:
+#         {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
+#     spec:
+#       {{- with .Values.nodeSelector }}
+#       nodeSelector:
+#         {{- toYaml . | nindent 8 }}
+#       {{- end }}
 
-      containers:
-        - name: redis
-          image: {{ .Values.redis.image }}
-          command:
-            - redis-server
-          env:
-            - name: MASTER
-              value: "true"
-          ports:
-            - name: redis
-              containerPort: {{ .Values.redis.port }}
+#       containers:
+#         - name: redis
+#           image: {{ .Values.redis.image }}
+#           command:
+#             - redis-server
+#           env:
+#             - name: MASTER
+#               value: "true"
+#           ports:
+#             - name: redis
+#               containerPort: {{ .Values.redis.port }}
