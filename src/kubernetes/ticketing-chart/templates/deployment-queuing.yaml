@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-queuing-api
+  labels:
+    - app.kubernetes.io/name: ticketing-queuing-api
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      - app.kubernetes.io/name: ticketing-queuing-api
+  template:
+    metadata:
+      labels:
+        - app.kubernetes.io/name: ticketing-queuing-api
+    spec:
+
+      {{- with .Values.nodeSelector }}
+      nodeSelector:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
+
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.queuing-system.image.repository }}:{{ .Values.queuing-system.image.tag }}"
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+
+          
+          imagePullPolicy: Always
+
+          ports:
+            - name: http
+              containerPort: {{ .Values.backend.port }}
+              protocol: TCP
+
+          env:
+            - name: NODE_ENV
+              value: {{ .Values.queuing-system.config.NODE_ENV }}
+            - name: PORT
+              value: {{ .Values.queuing-system.config.PORT }}
+            - name: REDIS_HOST
+              value: {{ .Values.queuing-system.config.REDIS_HOST }}
+            - name: REDIS_PORT
+              value: {{ .Values.queuing-system.config.REDIS_PORT }}
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
