@@ -19,3 +19,21 @@ backend:
 redis:
   image: redis:latest
   port: 6379
+
+
+queuing-system:
+  serviceAccountName: "ticketing-backend-account"
+
+  image:
+    repository: 213060417361.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing-queuing-ecr
+    pullPolicy: Always
+    tag: "latest"
+
+  config:
+    NODE_ENV: development
+    PORT: 8080
+    REDIS_HOST: ticketing-redis.default.svc.cluster.local
+    REDIS_PORT: 6379
+    JOB_INTEVAL_SEC: 10
+    JOB_MOVE_PER_INTEVAL: 100
+    JOB_TICKET_EXPIRED_SEC: 180
