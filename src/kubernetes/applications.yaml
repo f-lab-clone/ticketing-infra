@@ -10,7 +10,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/f-lab-clone/ticketing-infra.git
-    targetRevision: feat/77-init-sql
+    targetRevision: feat/80-deploy-queue-system
     path: src/kubernetes/ticketing-chart
   
   destination:

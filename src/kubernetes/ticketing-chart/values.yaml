@@ -14,3 +14,28 @@ backend:
   autoscaling:
     enabled: true
     replicaCount: 1
+
+queuing-system:
+  image:
+    repository: 213060417361.dkr.ecr.ap-northeast-2.amazonaws.com/ticketing-queuing-ecr
+    pullPolicy: Always
+    tag: "latest"
+
+  config:
+    NODE_ENV: development
+    PORT: 8080
+    REDIS_HOST: redis_server
+    REDIS_PORT: 6379
+    JOB_INTEVAL_SEC: 10
+    JOB_MOVE_PER_INTEVAL: 100
+    JOB_TICKET_EXPIRED_SEC: 180
+  
+
+redis:
+  image: redis:latest
+  port: 6379
+  architecture: standalone
+
+
+nodeSelector: 
+- role: backend
