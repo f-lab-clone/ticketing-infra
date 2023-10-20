@@ -1,0 +1,54 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ticketing-queuing-api
+  labels:
+    {{- include "ticketing-chart.labels" . | nindent 4 }}
+  namespace: {{ .Values.namespace }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "ticketing-chart.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "ticketing-chart.selectorLabels" . | nindent 8 }}
+    spec:
+      nodeSelector:
+        role: backend
+
+      containers:
+        - name: ticketing-queuing-api
+          image: "{{ .Values.queuing_system.image.repository }}:{{ .Values.queuing_system.image.tag }}"
+
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "100Mi"
+          
+          imagePullPolicy: Always
+          command: ['npm', 'run', 'start:api']
+
+          ports:
+            - name: http
+              containerPort: {{ .Values.queuing_system.config.PORT }}
+              protocol: TCP
+
+          env:
+            - name: NODE_ENV
+              value: "{{ .Values.queuing_system.config.NODE_ENV }}"
+            - name: PORT
+              value: "{{ .Values.queuing_system.config.PORT }}"
+            - name: REDIS_HOST
+              value: "{{ .Values.queuing_system.config.REDIS_HOST }}"
+            - name: REDIS_PORT
+              value: "{{ .Values.queuing_system.config.REDIS_PORT }}"
+
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
+          readinessProbe:
+            httpGet:
+              path: /
+              port: http
