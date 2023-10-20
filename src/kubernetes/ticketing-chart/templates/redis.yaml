@@ -30,3 +30,16 @@ spec:
           ports:
             - name: redis
               containerPort: {{ .Values.redis.port }}
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ticketing-redis
+  namespace: {{ .Values.namespace }}
+spec:
+  type: ClusterIP
+  ports:
+  - port: {{ .Values.redis.port }}
+    targetPort: {{ .Values.redis.port }}
+  selector:
+    {{- include "ticketing-chart.selectorLabels" . | nindent 4 }}
