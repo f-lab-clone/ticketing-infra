@@ -48,6 +48,8 @@ spec:
               protocol: TCP
 
           env:
+            - name: SPRING_PROFILES_ACTIVE
+              value: "{{ .Values.backend.environment }}"
             - name: PORT
               value: "{{ .Values.backend.port }}"
             - name: MYSQL_USERNAME
