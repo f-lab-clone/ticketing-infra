@@ -35,5 +35,5 @@ queuing_system:
     REDIS_HOST: ticketing-redis.default.svc.cluster.local
     REDIS_PORT: 6379
     JOB_INTEVAL_SEC: 10
-    JOB_MOVE_PER_INTEVAL: 100
+    JOB_MOVE_PER_INTEVAL: 20
     JOB_TICKET_EXPIRED_SEC: 180
