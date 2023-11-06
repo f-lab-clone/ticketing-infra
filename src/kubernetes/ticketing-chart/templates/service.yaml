@@ -22,7 +22,7 @@ spec:
   - port:  {{ .Values.queuing_system.config.PORT }}
     targetPort:  {{ .Values.queuing_system.config.PORT }}
   selector:
-    {{- include "ticketing-chart.queuingSelectorLabels" . | nindent 4 }}
+    {{- include "ticketing-chart.queuingAPISelectorLabels" . | nindent 4 }}
 ---
 apiVersion: v1
 kind: Service

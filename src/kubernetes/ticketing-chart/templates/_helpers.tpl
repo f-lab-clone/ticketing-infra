@@ -60,7 +60,14 @@ app.kubernetes.io/name: {{ include "ticketing-chart.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
+{{- define "ticketing-chart.queuingAPISelectorLabels" -}}
+app.kubernetes.io/name: {{ include "ticketing-chart.name" . }}-queuing-api
+app.kubernetes.io/instance: {{ .Release.Name }}
+{{- end }}
+
+
 {{- define "ticketing-chart.queuingSelectorLabels" -}}
 app.kubernetes.io/name: {{ include "ticketing-chart.name" . }}-queuing
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
+

@@ -8,11 +8,11 @@ metadata:
 spec:
   selector:
     matchLabels:
-      {{- include "ticketing-chart.queuingSelectorLabels" . | nindent 6 }}
+      {{- include "ticketing-chart.queuingAPISelectorLabels" . | nindent 6 }}
   template:
     metadata:
       labels:
-        {{- include "ticketing-chart.queuingSelectorLabels" . | nindent 8 }}
+        {{- include "ticketing-chart.queuingAPISelectorLabels" . | nindent 8 }}
     spec:
       nodeSelector:
         role: backend
