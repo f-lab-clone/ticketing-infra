@@ -52,6 +52,8 @@ spec:
               value: "{{ .Values.backend.environment }}"
             - name: PORT
               value: "{{ .Values.backend.port }}"
+            - name: QUEUE_SERVER_URL
+              value: "{{ .Values.queuing_system.URL }}"
             - name: MYSQL_USERNAME
               valueFrom:
                 secretKeyRef:

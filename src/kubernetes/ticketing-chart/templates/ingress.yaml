@@ -52,6 +52,13 @@ spec:
             name: {{ include "ticketing-chart.fullname" . }}
             port:
               number: {{ .Values.backend.port }}
+      - path: /ticket
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ include "ticketing-chart.fullname" . }}-queuing-api
+            port:
+              number: {{ .Values.queuing_system.config.PORT }}
       - path: /
         pathType: Prefix
         backend:
