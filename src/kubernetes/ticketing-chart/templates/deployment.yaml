@@ -54,6 +54,10 @@ spec:
               value: "{{ .Values.backend.port }}"
             - name: QUEUE_SERVER_URL
               value: "{{ .Values.queuing_system.URL }}"
+            - name: REDIS_HOST
+              value: "{{ .Values.queuing_system.config.REDIS_HOST }}"
+            - name: REDIS_PORT
+              value: "{{ .Values.queuing_system.config.REDIS_PORT }}"
             - name: MYSQL_USERNAME
               valueFrom:
                 secretKeyRef:
