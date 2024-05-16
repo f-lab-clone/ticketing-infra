@@ -1,5 +1,7 @@
 ## Introduction
 
+<img src="https://github.com/f-lab-clone/ticketing-backend/assets/41976906/b728aab9-d2ce-41bd-a448-c5c181b61453"  width="70%" height="70%"/>
+
 Our primary goal was to build a scalable and efficient backend for a ticketing service that could handle high loads with minimal latency. The project focuses exclusively on the backend and infrastructure aspects, omitting a frontend interface to concentrate on the underlying mechanics and performance. This repository highlights the infrastructure conponents, illustrating our journey through building infrastructure, creating CI/CD pipelines, and managing containers. 
 
 <b>Programming Language & Framework</b>: We chose <b>Kotlin</b> and <b>Spring Boot</b> for their expressive syntax and the powerful suite of tools for building web applications efficiently.
@@ -18,7 +20,10 @@ Our primary goal was to build a scalable and efficient backend for a ticketing s
 
 <b>Monitoring</b>: We integrated <b>Prometheus</b> and <b>Grafana</b> to monitor our applications and infrastructure, ensuring high availability and performance through real-time insights.
 
-<img src="https://github.com/f-lab-clone/ticketing-backend/assets/41976906/b728aab9-d2ce-41bd-a448-c5c181b61453"  width="70%" height="70%"/>
+
+## Additional Repository
+
+- [Backend](https://github.com/f-lab-clone/ticketing-backend)  
 
 
 ## Infrastructure
